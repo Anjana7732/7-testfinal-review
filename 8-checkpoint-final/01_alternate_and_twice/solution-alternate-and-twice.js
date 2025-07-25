@@ -1,18 +1,20 @@
 /* eslint-disable no-unused-vars, no-prototype-builtins */
-function longest(s1, s2) {
-    debugger
-  // your code
-  let map={}
-  let arr =[]
-  for(char of s1){
-    if(!map[char]){
-    map[char]=1}
-  }
-  for (char of s2){
-    if (map[char]!== undefined){
-      arr.push(char)
+function alternate(fn) {
+  let callCount =0;
+  return function () {
+    callCount++;
+    if (callCount % 2 === 1){
+        return fn();
     }
-  }
-  return arr.join('')
+  };
 }
-console.log(longest('asjbcjbdc','asjhbdc'))
+function twice(fn) {
+    let callCount = 0;
+    return function() {
+        if(callCount<2) {
+            callCount++
+            return fn();
+        }
+        return 0;
+    }
+}
